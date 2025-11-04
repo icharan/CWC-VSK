@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmers Weather Bulletin</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .form-row { display: flex; align-items: center; margin-top: 10px; }
+        label { margin-right: 10px; }
+        textarea { width: 100%; height: 150px; margin-top: 10px; }
+        button { margin-top: 10px; }
+        footer { text-align: right; margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>Farmers Weather Bulletin</h1>
+
+    <div class="form-row">
+        <label for="date">Select Date:</label>
+        <input type="date" id="date" value="">
+    </div>
+
+    <div class="form-row">
+        <label for="forecast">Select Forecast:</label>
+        <select id="forecast">
+
+ <option value="Dry Weather likely to prevail.">Dry Weather likely to prevail.</option>
+  <option value="Light to moderate Rain likely at ONE OR TWO places.">Light to moderate Rain likely at ONE OR TWO places.</option>
+            <option value="Light to moderate Rain or Thundershowers likely at ONE OR TWO places.">Light to moderate Rain or Thundershowers likely at ONE OR TWO places.</option>
+            <option value="Light to moderate Rain or Thundershowers likely at a FEW places.">Light to moderate Rain or Thundershowers likely at a FEW places.</option>
+            <option value="Light to moderate Rain or Thundershowers most likely at MOST places.">Light to moderate Rain or Thundershowers most likely at MOST places.</option>
+            <option value="Light to moderate Rain or Thundershowers very likely at MANY places.">Light to moderate Rain or Thundershowers very likely at MANY places.</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="heavyRain">Select Heavy Rainfall Warning:</label>
+        <select id="heavyRain">
+            <option value="Nil">Nil</option>
+            <option value="Heavy Rainfall likely at isolated places.">Heavy Rainfall likely at isolated places.</option>
+            <option value="Heavy to very Heavy Rainfall likely at isolated places.">Heavy to very Heavy Rainfall likely at isolated places.</option>
+            <option value="Heavy to very Heavy with Extremely Heavy Rainfall likely at isolated places.">Heavy to very Heavy with Extremely Heavy Rainfall likely at isolated places.</option>
+        </select>
+    </div>
+
+    <button onclick="generateMessage()">Generate Message</button>
+
+    <textarea id="generatedMessage" readonly></textarea>
+
+    <button onclick="copyToClipboard()">Copy Message</button>
+    <button onclick="sendToWhatsApp()">Send to WhatsApp</button>
+
+    <footer><b>꧁<i>SAI CHARAN<i>꧂</b></footer>
+
+    <script>
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+            const year = date.getFullYear();
+            return `${day}-${month}-${year}`;
+        }
+
+        function generateMessage() {
+            const date = formatDate(document.getElementById('date').value);
+            const forecast = document.getElementById('forecast').value;
+            const heavyRain = document.getElementById('heavyRain').value;
+
+            const message = `*FARMERS WEATHER BULLETIN FOR SRIKAKULAM, PARVATHIPURAM MANYAM, VIZIANAGARAM, VISAKHAPATNAM, ALLURI SITHARAMA RAJU, ANAKAPALLI, KAKINADA, Dr.B.R.AMBEDKAR KONASEEMA, EAST GODAVARI, WEST GODAVARI AND ELURU DISTRICTS.*\n\nDATE: ${date}.\n\nForecast valid for next 24 hours: ${forecast}\n\nHeavy Rainfall Warning (If any): ${heavyRain}\n\nWeather outlook (for subsequent two days): No Significant Change.\n\n==`;
+            
+            document.getElementById('generatedMessage').value = message;
+            document.getElementById('generatedMessage').readOnly = false; // Make the textarea editable
+        }
+
+        function copyToClipboard() {
+            const message = document.getElementById('generatedMessage');
+            message.select();
+            document.execCommand('copy');
+            alert('Message copied to clipboard!');
+        }
+
+        function sendToWhatsApp() {
+            const message = encodeURIComponent(document.getElementById('generatedMessage').value);
+            const url = `https://api.whatsapp.com/send?text=${message}`;
+            window.open(url, '_blank');
+        }
+    </script>
+
+</body>
+</html>
