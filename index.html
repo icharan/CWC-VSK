@@ -8,16 +8,17 @@
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background-color: #0a0a0a;
+      background: linear-gradient(to bottom, #004e92, #000428); /* Weather-style gradient */
       background-size: cover;
       margin: 0;
       padding: 0;
+      color: white;
     }
     .container {
       margin-top: 100px;
-      background: green;
+      background: transparent; /* Removed green background */
       padding: 100px;
-      border-radius: 100px;
+      border-radius: 50px;
       display: inline-block;
       color: white;
     }
@@ -32,6 +33,12 @@
       display: block;
       margin: 0 auto;
       border-radius: 10px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+    }
+    .icon img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
     }
     .icon a {
       text-decoration: none;
@@ -49,7 +56,7 @@
 
       <div class="icon">
         <a href="NOWCAST+ILDN.html">
-         <img src="4.gif" alt="Nowcast+ILDN">
+          <img src="4.gif" alt="Nowcast+ILDN">
           <span>Nowcast + ILDN</span>
         </a>
       </div>
@@ -117,6 +124,15 @@
         </a>
       </div>
 
+      <!-- 🌦️ NEW ICON ADDED BELOW -->
+      <div class="icon">
+        <a href="https://colab.research.google.com/drive/1kC7RgRDmPf9viLf9FdTuuCAQeUe_UsWR" target="_blank">
+          <img src="weather.gif" alt="Weather Forecast AI">
+          <span>Weather Forecast AI</span>
+        </a>
+      </div>
+      <!-- END NEW ICON -->
+
     </div>
   </div>
 
@@ -128,7 +144,4 @@
 
 </body>
 </html>
-
-
-
 
