@@ -5,48 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NOWCAST</title>
   <style>
-    <style>
     body {
       font-family: Arial, sans-serif;
       text-align: center;
-      background: linear-gradient(to bottom, #004E92, #004E92);
+      background: radial-gradient(circle at top, #1a1a1a, #000000);
       background-size: cover;
       margin: 0;
       padding: 0;
-      color: white;
+      color: #e0e0e0;
     }
     .container {
-      margin-top: 100px;
-      background: transparent; /* Removed green background */
-      padding: 100px;
-      border-radius: 50px;
+      margin-top: 80px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 80px;
+      border-radius: 40px;
       display: inline-block;
-      color: white;
+      color: #f0f0f0;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+    }
+    h1 {
+      color: #f5f5f5;
+      margin-bottom: 40px;
+      letter-spacing: 2px;
     }
     .icon {
-      margin: 20px;
+      margin: 25px;
       display: inline-block;
       text-align: center;
     }
     .icon img {
-      width: 200px;
-      height: 200px;
+      width: 180px;
+      height: 180px;
       display: block;
       margin: 0 auto;
-      border-radius: 10px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+      object-fit: cover;
     }
     .icon img:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+      transform: scale(1.08);
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
     }
     .icon a {
       text-decoration: none;
-      color: white;
-      font-size: 20px;
+      color: #b0e0ff;
+      font-size: 18px;
       display: block;
       margin-top: 10px;
+      transition: color 0.2s;
+    }
+    .icon a:hover {
+      color: #00bfff;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+      font-size: 18px;
+      color: #ccc;
     }
   </style>
 </head>
@@ -62,7 +79,7 @@
         </a>
       </div>
       
-         <div class="icon">
+      <div class="icon">
         <a href="FOUR.html">
           <img src="6.gif" alt="NAVTEX">
           <span>NAVTEX CHANGE CHART LFC</span>
@@ -118,7 +135,7 @@
         </a>
       </div>
 
-          <div class="icon">
+      <div class="icon">
         <a href="https://colab.research.google.com/drive/1kC7RgRDmPf9viLf9FdTuuCAQeUe_UsWR" target="_blank">
           <img src="a.gif" alt="AWS WIND GUST">
           <span>AWS MAX WINDS</span>
@@ -128,22 +145,9 @@
     </div>
   </div>
 
-  <div class="footer" style="text-align: center; padding: 20px;">
-    <p style="margin: 0; font-size: 18px;">
-      <span style="float: right;"><b>꧁<i>SAI CHARAN</i>꧂</b></span>
-    </p>
+  <div class="footer">
+    <p><b>꧁<i>SAI CHARAN</i>꧂</b></p>
   </div>
-
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
 
