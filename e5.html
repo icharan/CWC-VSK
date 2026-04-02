@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meteogram</title>
+</head>
+<body>
+  <h2>VSK & NRSP ECMWF Meteogram</h2>
+  
+  <form id="meteogramForm">
+    <label for="date">Date (YYYY-MM-DD):</label>
+    <input type="date" id="date" name="date" required><br><br>
+    
+    <label for="time">Hour (HH):</label>
+    <select id="time" name="time" required>
+      <option value="00">00</option>
+      <option value="12">12</option>
+    </select><br><br>
+    
+    <button type="submit">Fetch Meteograms</button>
+  </form>
+
+  <h3>Result:</h3>
+
+  <!-- Container for side-by-side images -->
+  <div style="display: flex; gap: 20px;">
+    <img id="imgVizag" style="width: 48%; display:none;" />
+    <img id="imgNarasapur" style="width: 48%; display:none;" />
+  </div>
+
+<script>
+  // Set today's date automatically
+  window.addEventListener("DOMContentLoaded", () => {
+    const today = new Date();
+    
+    // Format as YYYY-MM-DD
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+
+    const formattedDate = `${yyyy}-${mm}-${dd}`;
+    document.getElementById("date").value = formattedDate;
+  });
+
+  document.getElementById("meteogramForm").addEventListener("submit", async function(event) {
+    event.preventDefault();
+    
+    const date = document.getElementById("date").value;
+    const time = document.getElementById("time").value;
+    
+    const baseTime = `${date}T${time}`;
+
+    const urlVizag = `https://charts.ecmwf.int/opencharts-api/v1/products/opencharts_meteogram/?base_time=${baseTime}%3A00%3A00Z&lat=17.6801&lon=83.2016&station_name=Visakhapatnam`;
+
+    const urlNarasapur = `https://charts.ecmwf.int/opencharts-api/v1/products/opencharts_meteogram/?base_time=${baseTime}%3A00%3A00Z&lat=16.4340&lon=81.6980&station_name=Narasapur`;
+
+    try {
+      const [res1, res2] = await Promise.all([
+        fetch(urlVizag),
+        fetch(urlNarasapur)
+      ]);
+
+      if (res1.ok && res2.ok) {
+        const data1 = await res1.json();
+        const data2 = await res2.json();
+
+        const img1 = document.getElementById("imgVizag");
+        const img2 = document.getElementById("imgNarasapur");
+
+        img1.src = data1.data.link.href;
+        img2.src = data2.data.link.href;
+
+        img1.style.display = "block";
+        img2.style.display = "block";
+
+      } else {
+        alert("NOT UPDATED");
+      }
+
+    } catch (error) {
+      alert("Fetch error: " + error);
+    }
+  });
+</script>
+</body>
+</html>
+ 
